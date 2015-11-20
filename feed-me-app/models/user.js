@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var ComplaintSchema = require('./complaint').schema;
+var OrderSchema = require('./order').schema;
 
 var UserSchema = new mongoose.Schema({
 	email: String,
