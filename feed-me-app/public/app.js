@@ -53,3 +53,27 @@ var showLoginForm = function() {
 var loginUser = function() {
 
 }
+
+
+
+var renderMeals = function(data){
+
+	var container = $('#container');
+
+	var template = Handlebars.compile($('#main-screen').html());
+
+	container.append(template(data));
+
+}
+
+
+// var shareMeal = function() {
+
+// 	var id = $(this).parent().attr('data-id')
+
+// 	$('#share-button').click(function(){
+
+
+// 	})
+
+// }

@@ -32,6 +32,9 @@ app.listen(port);
 var User = require('./models/user.js');
 var Order = require('./models/order.js');
 
+// SEED
+var seed = require('./seed.js');
+
 
 // ROUTES
 
