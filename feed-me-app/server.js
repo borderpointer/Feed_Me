@@ -127,7 +127,7 @@ app.route('/signin')
 
             if (user.password === md5(req.body.password)) {
 
-                res.cookie("logged_in_user", user.id);
+                res.cookie("loggedInUser", user.id);
                 console.log("its a match");
                 res.send(user);
 
