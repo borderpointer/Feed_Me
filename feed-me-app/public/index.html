@@ -9,6 +9,52 @@
 
     <body>
 
+        <!-- Log in template -->
+        <template id='log-in-screen'>
+            <div class="form">
+                <div>Username: 
+                    <input type="text" id="username-field" placeholder="Username">
+                </div>
+                <div>Password:
+                    <input type="text" id="password-field" placeholder="Password">
+                </div>
+                <button id="signup-submit">Sign In</button>
+            </div>
+        </template>
+
+
+        <!-- Sign Up Template -->
+        <template id='sign-up-screen'>
+            <div class="form">
+                <div>Email: 
+                    <input type="text" id="email-field" placeholder="Email">
+                </div>
+                 <div>Name: 
+                    <input type="text" id="username-field" placeholder="Username">
+                </div>
+
+                <div>Password:
+                    <input type="text" id="password-field" placeholder="Password">
+                </div>
+<!--                 <div>Password Confirmation:
+                    <input type="text" id="password-field" placeholder="Password">
+                </div> -->
+
+                <button id="signup-submit">Sign Up</button>
+            </div>
+        </template>
+
+        <!-- Main screen display all users meals -->
+        <template id='main-screen'>
+            {{#each order}}
+                <h5 id='main-screen-rest-name'>Restaurant  {{restaurant_name}}</h5>
+
+                <p id='main-screen-details'>Meal Detials: {{detials}}</p>
+            {{/order}}
+        </template>
+
+
+
         <!-- Load all scripts after everything else in the body is loaded -->
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
