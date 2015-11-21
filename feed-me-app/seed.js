@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost/feed_me', function(err) {
 // Create and save test user
 var user1 = new User({
 	email: "test@test.com",
-	password: "password",
+	password: "5f4dcc3b5aa765d61d8327deb882cf99",
 	name: "Fave User",
 	orders: []
 })
