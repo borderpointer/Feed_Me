@@ -8,17 +8,23 @@ $(function() {
 
 });
 
-var startApp = function() {
+var startApp = function(data) {
 
     // If a user is signed in, show different things,
     // else show only sign in and create account links.
-    if (Cookies.get('signedInUser') !== undefined) {
+    if (Cookies.get('loggedInUser') !== undefined) {
 
-        console.log("cookie present");
+        console.log("logged in user cookie present");
+        $('.form').empty();
+        $('#header').empty();
+        $('#header').append("<a href='#' id = 'signout'>Sign Out</a>");
+        invokeSignOut();
+
+        renderMeals();
 
     } else {
 
-        console.log("no cookies");
+        console.log("no logged in user cookie");
 
         $('#header').append("<a href='#' id = 'signin'>Sign In</a>");
         $('#header').append("<a href='#' id = 'signup'>Create Account</a>");
@@ -76,6 +82,14 @@ var signInUser = function() {
 
             console.log(data.name);
             alert("signed in successfully!");
+
+            // When the user is signed in, remove the sign in and sign up links and the respective form rendered, and only show the sign out link.
+            $('.form').empty();
+            $('#header').empty();
+            $('#header').append("<a href='#' id = 'signout'>Sign Out</a>");
+
+            invokeSignOut(data);
+
             renderMeals(data);
 
         });
@@ -148,6 +162,14 @@ var signUpUser = function() {
 
                 console.log(data);
                 alert("signed up successfully!");
+
+                // When the user is signed in, remove the sign in and sign up links and the respective form rendered, and only show the sign out link.
+                $('.form').empty();
+                $('#header').empty();
+                $('#header').append("<a href='#' id = 'signout'>Sign Out</a>");
+
+                invokeSignOut(data);
+
                 renderMeals(data);
 
             });
@@ -158,28 +180,50 @@ var signUpUser = function() {
 
 }
 
+var invokeSignOut = function(data){
+
+    var $signOut = $('#signout');
+
+    $signOut.click(function() {
+
+        console.log("About to sign out user");
+
+        Cookies.remove("loggedInUser");
+        console.log(Cookies.get("loggedInUser"));
+
+        // After signing out, empty the container that contains all of the previous user's orders
+        // Also, remove the sign out link.
+        $('#container').empty();
+        $('#header').empty();
+
+        // Invoke the startApp function to go through the process of signup/sign in all over again.
+        startApp(data);
+
+    });
+
+}
 
 
 var renderMeals = function(data){
 
-	console.log(data);
+    console.log(data);
 
-	var container = $('#container');
+    var container = $('#container');
 
-	var template = Handlebars.compile($('#main-screen').html());
+    var template = Handlebars.compile($('#main-screen').html());
 
-	container.append(template(data));
+    container.append(template(data));
 
 }
 
 
 // var shareMeal = function() {
 
-// 	var id = $(this).parent().attr('data-id')
+//  var id = $(this).parent().attr('data-id')
 
-// 	$('#share-button').click(function(){
+//  $('#share-button').click(function(){
 
 
-// 	})
+//  })
 
 // }

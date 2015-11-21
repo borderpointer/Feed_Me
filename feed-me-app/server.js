@@ -61,6 +61,7 @@ app.route('/users')
 
                 res.cookie("loggedInUser", newUser.id);
 
+                // Send all of the user's info except the password.
                 res.send(newUser.id, newUser.email, newUser.name, newUser.orders);
 
             }
@@ -128,7 +129,7 @@ app.route('/signin')
             if (user.password === md5(req.body.password)) {
 
                 res.cookie("loggedInUser", user.id);
-                console.log("its a match");
+
                 res.send(user);
 
             }
