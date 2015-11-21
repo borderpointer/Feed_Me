@@ -59,7 +59,7 @@ app.route('/users')
 
                 console.log("New user created!");
 
-                res.cookie("signedInUser", newUser.id);
+                res.cookie("loggedInUser", newUser.id);
 
                 res.send(newUser.id, newUser.email, newUser.name, newUser.orders);
 
