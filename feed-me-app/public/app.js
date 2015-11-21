@@ -162,6 +162,8 @@ var signUpUser = function() {
 
 var renderMeals = function(data){
 
+	console.log(data);
+
 	var container = $('#container');
 
 	var template = Handlebars.compile($('#main-screen').html());
