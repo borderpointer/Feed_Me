@@ -236,7 +236,6 @@ var updateMeal = function(){
 
 
 
-
 var attachNewOrder = function(){
 	('#container').empty();
 
