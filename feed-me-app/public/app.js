@@ -255,6 +255,7 @@ var invokeSignOut = function(data){
 
 var renderMeals = function(data){
 
+
     // Remove the background image after sign in
     $('body').css({
         "background": "none",
@@ -288,6 +289,7 @@ var renderMeals = function(data){
 
     console.log(data);
 
+
     var container = $('#container');
 
     var template = Handlebars.compile($('#main-screen').html());
@@ -295,11 +297,12 @@ var renderMeals = function(data){
     container.append(template(data));
 
     $('#create-new-order').click(function() {
-
 		attachNewOrder();
 	})
 
+    addShareClick();
 }
+
 
 
 
@@ -345,13 +348,31 @@ var createNewOrder = function(){
 }
 
 
-// var shareMeal = function() {
+var addShareClick = function() {
 
-//  var id = $(this).parent().attr('data-id')
+	var shareButtons = $('.share-button');
 
-//  $('#share-button').click(function(){
+    console.log(shareButtons)
+
+	for(i=0; i < shareButtons.length;i++){
+		$(shareButtons[i]).click(function(){
+
+			var template = Handlebars.compile($('#share-template').html());
+
+			$(this).append(template)
+
+			shareMeal($(this).parent().attr('data-id'))
+		})
+	}
+}
+
+var shareMeal = function(data) {
 
 
-//  })
 
-// }
+	console.log(data);
+
+
+}
+
+
