@@ -146,8 +146,8 @@ app.route('/users/:id/orders/')
             Order.create(req.body).then(function(order) {
                 user.addOrder(order);
                 res.send(order);
-            }):
-        })
+            });
+        });
     });
 
 

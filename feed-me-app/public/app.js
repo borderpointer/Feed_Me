@@ -221,45 +221,6 @@ var renderMeals = function(data){
 }
 
 
-
-
-var attachNewOrder = function(){
-	('#container').empty();
-
-	var template = Handlebars.compile($('#new-order-template').html());
-
-	('#container').append(template);
-
-	$('#new-order-submit').click(function() {
-
-		createNewOrder();
-	}
-}
-
-var createNewOrder = function(){
-
-	var restName = $('#rest-name').val();
-	var details = $('#order-details').val();
-	var cuisine = $('#cuisine-type').val();
-	var image = $('#order-image').val();
-	var favorite = $('#meal-favorite').val();
-
-	var orderData = {
-		restaurant_name: restName,
-		details: details,
-		cuisine: cuisine,
-		img_url: image,
-		favorite: favorite
-	}
-
-	$.ajax({
-       url: '/users/' +  Cookies.get('loggedInUser') + '/orders/',
-       method: 'POST',
-       data: orderData
-   	}).done(renderMeals);
-}
-
-
 // var shareMeal = function() {
 
 //  var id = $(this).parent().attr('data-id')
