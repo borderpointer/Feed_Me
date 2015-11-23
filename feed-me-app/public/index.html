@@ -66,7 +66,7 @@
                         <input type="password" id="password-field" placeholder="Password">
                     </div>
                     <div>
-                        <input type="password" id="password-confirm-field" placeholder="Password">
+                        <input type="password" id="password-confirm-field" placeholder="Confirm Password">
                         </div>
 
                     <button id="signup-submit">Sign Up</button>
@@ -79,16 +79,29 @@
 
         <!-- Main screen display all users meals -->
         <template id='main-screen'>
-            <button id="create-new-order">Create New Order</button>
-            {{#each orders}}
-                <div class="order-div small-12 large-8" data-id="{{_id}}">
-                    <h5 id='main-screen-rest-name'>Restaurant  {{restaurant_name}}</h5>
 
-                    <p id='main-screen-details'>Meal Details: {{details}}</p>
+            <div id = "orders-container">
 
-                    <button id="share-button">Share</button>
-                </div>
-            {{/each}}
+                {{#each orders}}
+
+                    <div class="order-div small-4 medium-2 large-4 columns" data-id="{{_id}}">
+                        <h2 id='main-screen-rest-name'>{{restaurant_name}}</h2>
+                        <div class = "img-container">
+                            <img src={{img_url}}>
+                        </div>
+                        <h3 class = "meal-details">Meal Details</h3>
+                        <p id='main-screen-details'><i>{{details}}</i></p>
+
+                        <button class="share-button">Share</button>
+                        <br>
+                        <button id="edit-button">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button id="delete-button">Delete</button>
+                    </div>
+
+                {{/each}}
+
+                <button class = "order-div small-4 medium-2 large-4 columns" id="create-new-order">Create New Order</button>
+            </div>
 
         </template>
 
@@ -96,7 +109,7 @@
         <!-- New Order Template -->
         <template id='new-order-template'>
             <div class="form small-10 medium-5 large-3">
-                <h5>Add A New Order</h5>
+                <h2>Add A New Order</h2>
                 <div>
                     <input type="text" id="rest-name" placeholder="Restaurant Name">
                 </div>
@@ -116,7 +129,7 @@
                 <div>
                     <input type="text" id="order-image" placeholder="Restaurant Image URL">
                 </div>
-                <div>Favorite:
+                <div>Favorite?
                     <input type="checkbox" id="meal-favorite">
                 </div>
 
