@@ -233,7 +233,7 @@ var attachNewOrder = function(){
 	$('#new-order-submit').click(function() {
 
 		createNewOrder();
-	}
+	})
 }
 
 var createNewOrder = function(){
