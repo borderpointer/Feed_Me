@@ -14,13 +14,22 @@ var startApp = function(data) {
     // else show only sign in and create account links.
     if (Cookies.get('loggedInUser') !== undefined) {
 
+    	console.log(data)
+
         console.log("logged in user cookie present");
         $('.form').empty();
         $('#header').empty();
         $('#header').append("<a href='#' id = 'signout'>Sign Out</a>");
         invokeSignOut();
 
-        renderMeals();
+       	$.ajax({
+       		url: '/users/' +  Cookies.get('loggedInUser'),
+       		method: 'GET',
+   		}).done(function(data){
+   			console.log(data)
+   			$('#container').empty();
+   			renderMeals(data);
+   	});
 
     } else {
 
@@ -218,16 +227,21 @@ var renderMeals = function(data){
 
     container.append(template(data));
 
+    $('#create-new-order').click(function() {
+
+		attachNewOrder();
+	})
+
 }
 
 
 
 var attachNewOrder = function(){
-	('#container').empty();
+	$('#container').empty();
 
 	var template = Handlebars.compile($('#new-order-template').html());
 
-	('#container').append(template);
+	$('#container').append(template);
 
 	$('#new-order-submit').click(function() {
 
@@ -236,7 +250,7 @@ var attachNewOrder = function(){
 }
 
 var createNewOrder = function(){
-
+	console.log("reached create new order")
 	var restName = $('#rest-name').val();
 	var details = $('#order-details').val();
 	var cuisine = $('#cuisine-type').val();
@@ -252,10 +266,15 @@ var createNewOrder = function(){
 	}
 
 	$.ajax({
-       url: '/users/' +  Cookies.get('loggedInUser') + '/orders/',
+       url: '/users/' +  Cookies.get('loggedInUser') + '/orders',
        method: 'POST',
        data: orderData
-   	}).done(renderMeals);
+   	}).done(function(data){
+   		console.log(data)
+   		$('#container').empty();
+   		renderMeals(data);
+   });
+   	
 }
 
 
