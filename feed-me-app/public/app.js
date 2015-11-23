@@ -53,6 +53,8 @@ var showSignInForm = function() {
 
     // Empty the container before appending anything.
     $('#container').empty();
+    $('#signin').hide();
+    $('#signup').show();
 
     var $template = Handlebars.compile($('#log-in-screen').html());
 
@@ -119,6 +121,8 @@ var showSignUpForm = function() {
 
     // Empty the container before appending anything.
     $('#container').empty();
+    $('#signup').hide();
+    $('#signin').show();
 
     var $template = Handlebars.compile($('#sign-up-screen').html());
 
