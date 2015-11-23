@@ -53,6 +53,8 @@ var showSignInForm = function() {
 
     // Empty the container before appending anything.
     $('#container').empty();
+    $('#signin').hide();
+    $('#signup').show();
 
     var $template = Handlebars.compile($('#log-in-screen').html());
 
@@ -119,6 +121,8 @@ var showSignUpForm = function() {
 
     // Empty the container before appending anything.
     $('#container').empty();
+    $('#signup').hide();
+    $('#signin').show();
 
     var $template = Handlebars.compile($('#sign-up-screen').html());
 
@@ -228,6 +232,45 @@ var updateMeal = function(){
 
 
 }
+}
+
+
+
+
+var attachNewOrder = function(){
+	('#container').empty();
+
+	var template = Handlebars.compile($('#new-order-template').html());
+
+	('#container').append(template);
+
+	$('#new-order-submit').click(function() {
+
+		createNewOrder();
+	})
+}
+
+var createNewOrder = function(){
+
+	var restName = $('#rest-name').val();
+	var details = $('#order-details').val();
+	var cuisine = $('#cuisine-type').val();
+	var image = $('#order-image').val();
+	var favorite = $('#meal-favorite').val();
+
+	var orderData = {
+		restaurant_name: restName,
+		details: details,
+		cuisine: cuisine,
+		img_url: image,
+		favorite: favorite
+	}
+
+	$.ajax({
+       url: '/users/' +  Cookies.get('loggedInUser') + '/orders/',
+       method: 'POST',
+       data: orderData
+   	}).done(renderMeals);
 }
 
 

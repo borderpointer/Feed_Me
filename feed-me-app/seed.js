@@ -11,7 +11,11 @@
 // 	}
 // });
 
+
 // Create and save test user
+
+// // Create and save test user
+
 // var user1 = new User({
 // 	email: "test@test.com",
 // 	password: "5f4dcc3b5aa765d61d8327deb882cf99",
@@ -25,7 +29,7 @@
 // });
 
 
-// Create and save test orders
+// // Create and save test orders
 
 // var order1 = new Order({
 // 	restaurant_name: "Chop't",

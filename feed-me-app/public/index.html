@@ -4,19 +4,30 @@
 
     <head>
         <title>Feed Me</title>
+        <!-- Foundation CDN -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.min.css">
+        <!-- Google Font CDN -->
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
 
-        <!-- div for all the links -->
-        <header id = "header"></header>
-
         <!-- Log in template -->
+
+        <div id = "landing">
+
+            <a href="/" id = "logo">Feed Me</a>
+            <h4 id = "tagline">Sharing Meals Made Easy</h4>
+        <!-- div for all the links -->
+            <header id = "header"></header>
+
         <div id = "container"></div>
 
+        </div>
+
         <template id='log-in-screen'>
-            <div class="form">
+            <div class="form small-12 large-4">
                 <div>Email:
                     <input type="text" id="email-field" placeholder="Email">
                 </div>
@@ -30,7 +41,7 @@
 
         <!-- Sign Up Template -->
         <template id='sign-up-screen'>
-            <div class="form">
+            <div class="form small-12 large-4">
                 <div>Email:
                     <input type="text" id="email-field" placeholder="Email">
                 </div>
@@ -51,8 +62,9 @@
 
         <!-- Main screen display all users meals -->
         <template id='main-screen'>
+            <button id="create-new-order">Create New Order</button>
             {{#each orders}}
-                <div class="order-div" data-id="{{_id}}">
+                <div class="order-div small-12 large-8" data-id="{{_id}}">
                     <h5 id='main-screen-rest-name'>Restaurant  {{restaurant_name}}</h5>
 
                     <p id='main-screen-details'>Meal Details: {{details}}</p>
@@ -64,12 +76,47 @@
         </template>
 
 
+        <!-- New Order Template -->
+        <template id='new-order-template'>
+            <div class="form">
+                <h5>Add A New Order</h5>
+                <div>Restaurant Name:
+                    <input type="text" id="rest-name" placeholder="Restaurant">
+                </div>
+                <div>Order Details:
+                    <input type="text" id="order-details" placeholder="Order Details">
+                </div>
+                <div>Cuisine:
+                    <select id="cuisine-type">
+                        <option value="korean">Korean</option>
+                        <option value="american">American</option>
+                        <option value="chinese">Chinese</option>
+                        <option value="healthy">Healthy</option>
+                        <option value="mediterranean">Mediterranean</option>
+                    </select>
+                </div>
+                <div>Image:
+                    <input type="text" id="order-image" placeholder="URL">
+                </div>
+                <div>Favorite:
+                    <input type="checkbox" id="meal-favorite">
+                </div>
+
+                <button id="new-order-submit">Add Order</button>
+
+            </div>
+
+        </template>
+
+
+
 
         <!-- Load all scripts after everything else in the body is loaded -->
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
         <script src="app.js"></script>
 
     </body>
