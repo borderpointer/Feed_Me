@@ -86,7 +86,7 @@
 
                     <p id='main-screen-details'>Meal Details: {{details}}</p>
 
-                    <button id="share-button">Share</button>
+                    <button class="share-button">Share</button>
                 </div>
             {{/each}}
 
@@ -124,6 +124,17 @@
 
             </div>
 
+        </template>
+
+        <!-- Share template -->
+        <template id="share-template">
+            <div class="form">
+                <div>Email:
+                    <input type="text" id="share-email" placeholder="Email">
+                </div>
+                <button id="share-order-submit">Share Order</button>
+                <div id="cancel">Cancel</div>
+            </div>
         </template>
 
 
