@@ -89,6 +89,17 @@ app.route('/users/:id/orders')
     });
 
 
+app.route('/users/:id')
+    
+    .get(function(req,res){
+        User.findById(req.params.id).then(function(user) {
+
+            res.send(user)
+    });
+});
+
+
+
 // This route shows the user's single order.
 app.route('/users/:id/orders/:order_id')
 
@@ -138,14 +149,18 @@ app.route('/signin')
 
     });
 
-app.route('/users/:id/orders/')
+app.route('/users/:id/orders')
 
     .post(function(req,res){
 
-        User.findById(req.params.id).then(function(user) {
+        User.findOne(req.params.id).then(function(user) {
             Order.create(req.body).then(function(order) {
-                user.addOrder(order);
-                res.send(order);
+
+                console.log(user);
+                console.log(order)
+                user.orders.push(order)
+                user.save()
+                res.send(user);
             });
         });
     });
