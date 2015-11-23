@@ -80,14 +80,18 @@
         <!-- Main screen display all users meals -->
         <template id='main-screen'>
 
-            <div id = "orders-container">
+            <div id = "orders-container" class = "row">
 
                 {{#each orders}}
 
-                    <div class="order-div small-4 medium-2 large-4 columns" data-id="{{_id}}">
+                    <div class="order-div small-2 large-4 columns" data-id="{{_id}}">
                         <h2 id='main-screen-rest-name'>{{restaurant_name}}</h2>
                         <div class = "img-container">
+                            {{#if img_url}}
                             <img src={{img_url}}>
+                            {{else}}
+                            <img src="img/order-placeholder.jpg">
+                            {{/if}}
                         </div>
                         <h3 class = "meal-details">Meal Details</h3>
                         <p id='main-screen-details'><i>{{details}}</i></p>
@@ -99,17 +103,19 @@
                     </div>
 
                 {{/each}}
-
-                <button class = "order-div small-4 medium-2 large-4 columns" id="create-new-order">Create New Order</button>
+                <div class = "order-div small-2 large-4 columns">
+                <button id="create-new-order">Create New Order</button>
+                </div>
             </div>
 
         </template>
 
 
+
         <!-- New Order Template -->
         <template id='new-order-template'>
             <div class="form small-10 medium-5 large-3">
-                <h2>Add A New Order</h2>
+                <h2 id = "new-order">Add A New Order</h2>
                 <div>
                     <input type="text" id="rest-name" placeholder="Restaurant Name">
                 </div>

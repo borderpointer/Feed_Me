@@ -60,7 +60,7 @@ html, h1, h2, h3, h4, h5, p, a {
 #signout:hover {
     opacity: .75;
 }
-#signin:hover, #signup:hover, #signup-submit:hover, #signin-submit:hover, #new-order-submit:hover, #create-new-order:hover {
+#signin:hover, #signup:hover, #signup-submit:hover, #signin-submit:hover, #new-order-submit:hover, #create-new-order:hover, .share-button:hover {
     background-color: #619DD7;
 }
 
@@ -100,8 +100,8 @@ button:focus, select:focus {
 }
 
 .img-container {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     margin: 15px auto;
 }
 
@@ -118,12 +118,12 @@ img {
 
 .order-div {
     text-align: center;
+    margin: 45px 0;
 }
 
 #main-screen-rest-name {
     font-size: 2.25em;
 }
-
 .edit-button, .delete-button {
     transition: all .3s ease;
     border-bottom: 2px solid #333;
@@ -142,7 +142,7 @@ img {
     padding: 15px 0;
     font-weight: 700;
     transition: all .3s ease;
-    width: 22%;
+    width: 30%;
     border-radius: 3px;
     margin-bottom: 20px;
  }
@@ -153,4 +153,11 @@ img {
 
  #main-screen-details {
     padding: 5px 30px;
+ }
+
+ #new-order {
+    font-size: 2.25em;
+    padding: 75px 0 20px 0;
+    margin-bottom: 0;
+    text-align: center;
  }
