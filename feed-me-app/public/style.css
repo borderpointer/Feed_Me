@@ -1,51 +1,135 @@
-html {
+body {
    -webkit-font-smoothing: antialiased;
-   font-family: 'Lato', Futura, Helvetica, sans-serif;
+   font-family: 'Montserrat', Futura, Helvetica, sans-serif;
+   background: url('img/background-image.jpg') center center no-repeat;
+}
+
+html, h1, h2, h3, h4, h5, p, a {
+    font-family: 'Montserrat', Futura, Helvetica, sans-serif;
+}
+
+#landing {
+    padding-top: 15vh;
 }
 
 #logo, #tagline {
     text-align: center;
     font-weight: 700;
     letter-spacing: 2px;
+    color: #fff;
 }
 
 #logo {
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 15px;
     display: block;
-    font-size: 3em;
-    color: #333;
+    font-size: 3.5em;
+    border: 8px solid #fff;
+    padding: 30px 20px;
+    margin: 0 auto;
+    width: 35%;
 }
 
 #logo:hover {
-    color: #333;
+    transition: all .3s ease;
+    color: #fff;
+    opacity: .75;
 }
 
 #tagline {
-    font-weight: 400;
+    font-weight: 700;
+    font-size: 1.75em;
+    padding: 30px;
 }
 
 header {
-    margin: 50px 0;
+    padding: 30px 0 60px 0;
     text-align: center;
 }
 
-#signin, #signup, #signup-submit, #signin-submit {
+#signin, #signup{
     background-color: #D7C32E;
+    font-size: 1.25em;
     color: #fff;
     text-align: center;
-    padding: 15px 20px;
+    padding: 20px 30px;
     margin: 0 15px;
     font-weight: 700;
     transition: all .3s ease;
+    width: 100%;
+    border-radius: 3px;
 }
 
-#signin:hover, #signup:hover, #signup-submit:hover, #signin-submit:hover {
+#signout {
+    font-size: 1em;
+    color: #fff;
+    transition: all .3s ease;
+}
+
+ #signup-submit, #signin-submit, #new-order-submit {
+    background-color: #D7C32E;
+    font-size: 1.25em;
+    color: #fff;
+    text-align: center;
+    padding: 20px 30px;
+    font-weight: 700;
+    transition: all .3s ease;
+    width: 100%;
+    border-radius: 3px;
+    margin-bottom: 15vh;
+ }
+
+#create-new-order {
+    background-color: #D7C32E;
+    font-size: 1.25em;
+    color: #fff;
+    text-align: center;
+    padding: 20px 30px;
+    font-weight: 700;
+    transition: all .3s ease;
+    width: 25%;
+    border-radius: 3px;
+    margin-bottom: 15vh;
+}
+
+#signout:hover {
+    opacity: .75;
+}
+#signin:hover, #signup:hover, #signup-submit:hover, #signin-submit:hover, #new-order-submit:hover, #create-new-order:hover {
     background-color: #619DD7;
+}
+
+.form-container {
+    width: 100%;
 }
 
 .form {
     z-index: 10;
-    position: absolute;
     margin: 0 auto;
+}
+
+input[type=text], input[type=password], select {
+    height: 3.5em;
+    color: #333;
+    box-shadow: none;
+    transition: none;
+    padding: 0 20px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    transition: none;
+    border: 1px solid #333;
+    outline: 0;
+    box-shadow: none;
+}
+
+select {
+    transition: none;
+    outline: 0;
+    box-shadow: none;
+    background-color: #fff;
+}
+
+button:focus, select:focus {
+    outline: 0;
 }

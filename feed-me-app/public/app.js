@@ -219,6 +219,41 @@ var invokeSignOut = function(data){
 
 var renderMeals = function(data){
 
+
+    // Remove the background image after sign in
+    $('body').css({
+        "background": "none",
+        "background-color": "#f6f6f6"
+    });
+
+    // Make the logo smaller and shift it to the left
+    $('#landing').css({
+        "background-color": "#333",
+        "margin": "0 auto",
+        "padding": "15px"
+    });
+
+    $('#logo').css({
+        "letter-spacing": "7px",
+        "font-size": "1em",
+        "border": "3px solid #fff",
+        "color" : "#fff",
+        "padding": "10px 15px",
+        "width": "15%",
+        "text-align": "center"
+    });
+
+    // Remove tagline
+    $('#tagline').remove();
+
+    // Move logout link to the right
+    $('header').css({
+        "padding": "12px 0 0 0"
+    });
+
+    console.log(data);
+
+
     var container = $('#container');
 
     var template = Handlebars.compile($('#main-screen').html());
@@ -273,7 +308,7 @@ var createNewOrder = function(){
    		$('#container').empty();
    		renderMeals(data);
    });
-   	
+
 }
 
 
@@ -302,6 +337,6 @@ var shareMeal = function(data) {
 	console.log(data);
 
 
- }
+}
 
 
