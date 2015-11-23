@@ -51,6 +51,7 @@
 
         <!-- Main screen display all users meals -->
         <template id='main-screen'>
+            <button id="create-new-order">Create New Order</button>
             {{#each orders}}
                 <div class="order-div" data-id="{{_id}}">
                     <h5 id='main-screen-rest-name'>Restaurant  {{restaurant_name}}</h5>
@@ -62,6 +63,40 @@
             {{/each}}
 
         </template>
+
+
+        <!-- New Order Template -->
+        <template id='new-order-template'>
+            <div class="form">
+                <h5>Add A New Order</h5>
+                <div>Restaurant Name:
+                    <input type="text" id="rest-name" placeholder="Restaurant">
+                </div>
+                <div>Order Details:
+                    <input type="text" id="order-details" placeholder="Order Details">
+                </div>
+                <div>Cuisine:
+                    <select id="cuisine-type">
+                        <option value="korean">Korean</option>
+                        <option value="american">American</option>
+                        <option value="chinese">Chinese</option>
+                        <option value="healthy">Healthy</option>
+                        <option value="mediterranean">Mediterranean</option>
+                    </select>
+                </div>
+                <div>Image:
+                    <input type="text" id="order-image" placeholder="URL">
+                </div>
+                <div>Favorite:
+                    <input type="checkbox" id="meal-favorite">
+                </div>
+
+                <button id="new-order-submit">Add Order</button>
+
+            </div>
+
+        </tempalte>
+
 
 
 

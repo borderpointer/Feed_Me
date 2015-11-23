@@ -33,7 +33,7 @@ var User = require('./models/user.js');
 var Order = require('./models/order.js');
 
 // SEED
-var seed = require('./seed.js');
+// var seed = require('./seed.js');
 
 
 // ROUTES
@@ -136,6 +136,18 @@ app.route('/signin')
 
         });
 
+    });
+
+app.route('/users/:id/orders/')
+
+    .post(function(req,res){
+
+        User.findById(req.params.id).then(function(user) {
+            Order.create(req.body).then(function(order) {
+                user.addOrder(order);
+                res.send(order);
+            }):
+        })
     });
 
 
