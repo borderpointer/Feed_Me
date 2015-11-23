@@ -7,7 +7,7 @@
         <!-- Foundation CDN -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.min.css">
         <!-- Google Font CDN -->
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
@@ -17,47 +17,64 @@
 
         <div id = "landing">
 
-            <a href="/" id = "logo">Feed Me</a>
-            <h4 id = "tagline">Sharing Meals Made Easy</h4>
+            <a href="/" id = "logo">FEED ME</a>
+            <h2 id = "tagline">Sharing Meals Made Easy.</h2>
         <!-- div for all the links -->
             <header id = "header"></header>
 
-        <div id = "container"></div>
-
         </div>
 
+        <div id = "container"></div>
+
+
         <template id='log-in-screen'>
-            <div class="form small-12 large-4">
-                <div>Email:
-                    <input type="text" id="email-field" placeholder="Email">
+
+            <div class='form-container'>
+
+                <div class="form small-10 medium-5 large-3">
+
+                    <div>
+                        <input type="text" id="email-field" placeholder="Email">
+                    </div>
+                    <div>
+                        <input type="password" id="password-field" placeholder="Password">
+                    </div>
+                    <button id="signin-submit">Sign In</button>
+
                 </div>
-                <div>Password:
-                    <input type="password" id="password-field" placeholder="Password">
-                </div>
-                <button id="signin-submit">Sign In</button>
+
             </div>
+
         </template>
 
 
         <!-- Sign Up Template -->
         <template id='sign-up-screen'>
-            <div class="form small-12 large-4">
-                <div>Email:
-                    <input type="text" id="email-field" placeholder="Email">
-                </div>
-                 <div>Name:
-                    <input type="text" id="username-field" placeholder="Name">
-                </div>
 
-                <div>Password:
-                    <input type="password" id="password-field" placeholder="Password">
-                </div>
-                <div>Password Confirmation:
-                        <input type="password" id="password-confirm-field" placeholder="Password">
+            <div class='form-container'>
+
+                <div class="form small-10 medium-5 large-3">
+
+                    <div>
+                        <input type="text" id="email-field" placeholder="Email">
+                    </div>
+                     <div>
+                        <input type="text" id="username-field" placeholder="Name">
                     </div>
 
-                <button id="signup-submit">Sign Up</button>
+                    <div>
+                        <input type="password" id="password-field" placeholder="Password">
+                    </div>
+                    <div>
+                        <input type="password" id="password-confirm-field" placeholder="Password">
+                        </div>
+
+                    <button id="signup-submit">Sign Up</button>
+
+                </div>
+
             </div>
+
         </template>
 
         <!-- Main screen display all users meals -->
@@ -78,16 +95,17 @@
 
         <!-- New Order Template -->
         <template id='new-order-template'>
-            <div class="form">
+            <div class="form small-10 medium-5 large-3">
                 <h5>Add A New Order</h5>
-                <div>Restaurant Name:
-                    <input type="text" id="rest-name" placeholder="Restaurant">
+                <div>
+                    <input type="text" id="rest-name" placeholder="Restaurant Name">
                 </div>
-                <div>Order Details:
+                <div>
                     <input type="text" id="order-details" placeholder="Order Details">
                 </div>
-                <div>Cuisine:
+                <div>
                     <select id="cuisine-type">
+                        <option selected>Cuisine</option>
                         <option value="korean">Korean</option>
                         <option value="american">American</option>
                         <option value="chinese">Chinese</option>
@@ -95,8 +113,8 @@
                         <option value="mediterranean">Mediterranean</option>
                     </select>
                 </div>
-                <div>Image:
-                    <input type="text" id="order-image" placeholder="URL">
+                <div>
+                    <input type="text" id="order-image" placeholder="Restaurant Image URL">
                 </div>
                 <div>Favorite:
                     <input type="checkbox" id="meal-favorite">
