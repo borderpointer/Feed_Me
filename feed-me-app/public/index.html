@@ -126,6 +126,35 @@
 
         </template>
 
+        <template id="edit-order-template">
+            <div class="form">
+                <div>Restaurant Name: 
+                    <input type="text" id="rest-name" value="{{restaurant_name}}">
+                </div>
+                <div>Order Details:
+                    <input type="text" id="order-details" value="{{details}}">
+                </div>
+                <div>Cuisine:
+                    <select id="cuisine-type" value="{{cuisine}}">
+                        <option value="korean">Korean</option>
+                        <option value="american">American</option>
+                        <option value="chinese">Chinese</option>
+                        <option value="healthy">Healthy</option>
+                        <option value="mediterranean">Mediterranean</option>
+                    </select>
+                <div>Image:
+                    <input type="text" id="order-image" value="{{img_url}}">
+                </div>
+                <div>Favorite:
+                    <input type="checkbox" id="meal-favorite" value"{{favorite}}">
+                </div>
+                
+                <button id="new-order-submit">Add Order</button>
+
+
+            </div>
+        </template>
+
 
 
 

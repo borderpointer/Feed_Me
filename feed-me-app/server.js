@@ -165,6 +165,25 @@ app.route('/users/:id/orders')
         });
     });
 
+app.delete('/users/:id/orders/:order_id', function(req, res) {
 
+    Order.findOneAndRemove({_id: req.params.order_id}, function(err){});
+    
+    User.findById(req.params.id).then(function(user) {
+
+        user.orders.forEach(function(order) {
+
+            if (order._id === req.params.order_id) {
+
+                orders.pop(order);
+                console.log(order);
+
+            }
+
+        });
+
+    });
+
+});
 
 
