@@ -216,6 +216,20 @@ var renderMeals = function(data){
 
 }
 
+var updateMeal = function(){
+
+    var orderId = $(this).attr('data-id');
+
+    $.ajax({
+        url: '/users/' +  Cookies.get('loggedInUser') + '/orders/'+ orderId,
+        method: 'GET',
+        dataType: 'json'
+    }).done();
+
+
+}
+}
+
 
 // var shareMeal = function() {
 
