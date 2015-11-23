@@ -357,11 +357,22 @@ var addShareClick = function() {
 	for(i=0; i < shareButtons.length;i++){
 		$(shareButtons[i]).click(function(){
 
+			var activeButton = $(this);
+
 			var template = Handlebars.compile($('#share-template').html());
 
-			$(this).append(template)
+			$(activeButton.parent()).append(template);
+
+			activeButton.hide();
+
+			var shareTemp = $('.share-form');
 
 			shareMeal($(this).parent().attr('data-id'))
+
+			$('#share-cancel').click(function(){
+				activeButton.show();
+				shareTemp.remove();
+			})			
 		})
 	}
 }
