@@ -10,6 +10,45 @@ $(function() {
 
 var startApp = function(data) {
 
+    // setting up landing page css here so that if the user
+    // signs out, they still see the same thing as the landing page
+    $('body').css("background", "url('img/background-image.jpg') center center no-repeat");
+
+    $('#landing').css({
+        "padding-top": "15vh",
+        "background-color": "rgba(0,0,0,0)",
+        "margin": "0"
+    });
+
+    $('#logo').css({
+        "text-align": "center",
+        "font-weight": "700",
+        "letter-spacing": "15px",
+        "color": "#fff",
+        "display": "block",
+        "font-size": "3.5em",
+        "border": "8px solid #fff",
+        "padding": "30px 20px",
+        "margin": "0 auto",
+        "width": "35vw"
+    });
+
+    $('#tagline').css({
+        "text-align": "center",
+        "font-weight": "700",
+        "letter-spacing": "2px",
+        "color": "#fff",
+        "font-size": "1.75em",
+        "padding": "30px"
+    });
+
+    $('header').css({
+        "padding": "30px 0 60px 0",
+        "text-align": "center"
+    });
+
+    $('#tagline').show();
+
     // If a user is signed in, show different things,
     // else show only sign in and create account links.
     if (Cookies.get('loggedInUser') !== undefined) {
@@ -90,9 +129,6 @@ var signInUser = function() {
 
         $.post('/signin', user)
         .done(function(data) {
-
-            console.log(data.name);
-            alert("signed in successfully!");
 
             // When the user is signed in, remove the sign in and sign up links and the respective form rendered, and only show the sign out link.
             $('.form').empty();
@@ -239,12 +275,12 @@ var renderMeals = function(data){
         "border": "3px solid #fff",
         "color" : "#fff",
         "padding": "10px 15px",
-        "width": "15%",
+        "width": "15vw",
         "text-align": "center"
     });
 
     // Remove tagline
-    $('#tagline').remove();
+    $('#tagline').hide();
 
     // Move logout link to the right
     $('header').css({
