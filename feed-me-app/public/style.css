@@ -185,3 +185,11 @@ img {
     border-radius: 3px;
     margin-bottom: 20px;
  }
+
+ .cuisine {
+    padding-top: 10px;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-weight: 700;
+    font-style: italic;
+ }
