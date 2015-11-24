@@ -387,14 +387,14 @@ var attachNewOrder = function(){
 	$('#container').append(template);
 
 	$('#new-order-back-button').click(function(){
-		$.ajax({
-	       url: '/users/' +  Cookies.get('loggedInUser') + '/orders',
-	       method: 'POST'
-	   	}).done(function(data){
-	   		console.log(data)
-	   		$('#container').empty();
-	   		renderMeals(data);
-   		});
+       	$.ajax({
+       		url: '/users/' +  Cookies.get('loggedInUser'),
+       		method: 'GET',
+   		}).done(function(data){
+   			console.log(data)
+   			$('#container').empty();
+   			renderMeals(data);
+   	});
 	})
 
 	$('#new-order-submit').click(function() {
@@ -532,6 +532,17 @@ var showEditMealForm = function(data){
     var template = Handlebars.compile($('#edit-order-template').html());
 
     $('#container').append(template(data));
+
+    $('#edit-order-back-button').click(function(){
+       	$.ajax({
+       		url: '/users/' +  Cookies.get('loggedInUser'),
+       		method: 'GET',
+   		}).done(function(data){
+   			console.log(data)
+   			$('#container').empty();
+   			renderMeals(data);
+   	});
+	})
 
     // by default, select the cuisine that it already was set to
     $.each( $('.option'), function( index, option ){
