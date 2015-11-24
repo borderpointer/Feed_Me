@@ -112,8 +112,11 @@ img {
 }
 
 #orders-container {
-    width: 90%;
     margin: 30px auto;
+}
+
+.row {
+    max-width: 80rem;
 }
 
 .order-div {
@@ -148,11 +151,13 @@ img {
  }
 
  .meal-details {
-    font-size: 1.35em;
+    font-size: .9em;
  }
 
  #main-screen-details {
-    padding: 5px 30px;
+    font-size: 1.1em;
+    padding: 5px 40px;
+    line-height: 1.4;
  }
 
  #new-order {

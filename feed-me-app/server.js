@@ -90,7 +90,7 @@ app.route('/users/:id/orders')
 
 
 app.route('/users/:id')
-    
+
     .get(function(req,res){
         User.findById(req.params.id).then(function(user) {
 
@@ -164,6 +164,42 @@ app.route('/users/:id/orders')
             });
         });
     });
+
+app.delete('/users/:id/orders/:order_id', function(req, res) {
+
+    Order.remove({ _id: req.params.order_id }, function(err){
+
+        if (err) {
+
+            console.log(err);
+
+        }
+
+    });
+
+    User.findById(req.params.id).then(function(user) {
+
+        user.orders.forEach(function(order) {
+
+            if (order._id == req.params.order_id) {
+
+                console.log(order._id);
+                console.log("if statement matched");
+
+                var index = user.orders.indexOf(order);
+                user.orders.splice(index, 1);
+
+            }
+
+        });
+
+        user.save();
+
+        res.send(user);
+
+    });
+
+});
 
 
 

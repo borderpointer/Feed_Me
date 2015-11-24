@@ -292,6 +292,8 @@ var renderMeals = function(data){
 
     var container = $('#container');
 
+    container.empty();
+
     var template = Handlebars.compile($('#main-screen').html());
 
     container.append(template(data));
@@ -301,6 +303,7 @@ var renderMeals = function(data){
 	})
 
     addShareClick();
+    deleteMeal();
 }
 
 
@@ -372,7 +375,7 @@ var addShareClick = function() {
 			$('#share-cancel').click(function(){
 				activeButton.show();
 				shareTemp.remove();
-			})			
+			})
 		})
 	}
 }
@@ -383,6 +386,28 @@ var shareMeal = function(data) {
 
 	console.log(data);
 
+
+}
+
+var deleteMeal = function(){
+
+    $('.delete-button').click(function(){
+
+        var $orderId = $(this).parent().attr('data-id');
+
+        $.ajax({
+
+            url: "/users/" + Cookies.get('loggedInUser') + "/orders/" + $orderId,
+            method: "DELETE"
+
+        }).done(function(data) {
+            console.log(data);
+
+            renderMeals(data);
+
+        });
+
+    });
 
 }
 
