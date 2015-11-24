@@ -434,56 +434,55 @@ var addShareClick = function() {
 
 	var shareButtons = $('.share-button');
 
-    // console.log(shareButtons)
+	for(var i = 0; i < shareButtons.length; i++){
 
-	for(i=0; i < shareButtons.length;i++){
 		$(shareButtons[i]).click(function(){
 
-			var activeButton = $(this);
+            // Trigger shareMeal, which appends the handlebar template
+			shareMeal($(this), $(this).parent().attr('data-id'));
 
-			var template = Handlebars.compile($('#share-template').html());
+		});
 
-			$(activeButton.parent()).append(template);
-
-			activeButton.hide();
-
-			var shareTemp = $('.share-form');
-
-			var sendEmailButton = $('#share-order-submit');
-
-			$(sendEmailButton).click(function(){
-		
-				shareMeal($(this).parent().parent().attr('data-id'))
-				// console.log(shareMeal($(this).parent().parent().attr('data-id')))
-			})
-
-			
-			$('#share-cancel').click(function(){
-				activeButton.show();
-				shareTemp.remove();
-			})
-		})
 	}
+
 }
 
-var shareMeal = function(data) {
+var shareMeal = function(clicked_button, order_id) {
 
-	$.ajax({
-       		url: '/users/' +  Cookies.get('loggedInUser')+'/orders/'+data,
-       		method: 'GET',
-   		}).done(function(info){
+    // All of this is for showing the share form template
+    var $template = Handlebars.compile($('#share-template').html());
 
-			// var sendEmailField = $('#share-email').val();
+    clicked_button.parent().append($template);
 
-			 
+    clicked_button.hide();
 
-			// +sendEmailField+"?subject=LunchOrder&body="+info.details
+    var $shareTemp = $('.share-form');
 
+    // These are the things needed to send a request for email
 
-			// console.log("mailto:"+sendEmailField+"?subject=LunchOrder&body="+info.details)
+    var $sendEmailButton = $('#share-order-submit');
 
-			// return ("mailto:"+sendEmailField+"?subject=LunchOrder&body="+info.details);	
-   	});
+    $('#share-cancel').click(function(){
+
+        clicked_button.show();
+        $shareTemp.remove();
+
+    });
+
+    $sendEmailButton.click(function() {
+
+        // Grab user's email input
+        var $mailTo = $('#share-email').val();
+
+        // Grab order's restaurant name
+        var $restaurantName = $(this).parent().parent().find("#main-screen-rest-name").html();
+
+        // grab order's details
+        var $orderDetails = $(this).parent().parent().find("#main-screen-details").html();
+
+        window.location.href = "mailto:" + $mailTo + "?subject=" + $restaurantName + "&body=Hey, here's my order details, thanks!%0D%0A%0D%0A" + $orderDetails;
+
+    });
 
 }
 
