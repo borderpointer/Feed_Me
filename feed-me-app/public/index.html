@@ -101,7 +101,7 @@
                             <img src="img/order-placeholder.jpg">
                             {{/if}}
                         </div>
-                        <h3 class = "cuisine">{{cuisine}}</h3>
+                        <h3 id = "cuisine">{{cuisine}}</h3>
                         <p id='main-screen-details'>{{details}}</p>
 
                         <button class="share-button">Share</button>
@@ -132,7 +132,7 @@
 
                 {{#each this}}
 
-                    <div class="order-div small-12 medium-6 large-4 columns" data-id="{{_id}}" data-name= "{{restaurant_name}}" data-details="{{details}}">
+                    <div class="order-div small-12 medium-6 large-4 columns" data-id="{{_id}}">
                         <h2 id='main-screen-rest-name'>{{restaurant_name}}</h2>
                         <div class = "img-container">
                             {{#if img_url}}
@@ -141,7 +141,7 @@
                             <img src="img/order-placeholder.jpg">
                             {{/if}}
                         </div>
-                        <h3 class = "cuisine">{{cuisine}}</h3>
+                        <h3 id = "cuisine">{{cuisine}}</h3>
                         <p id='main-screen-details'>{{details}}</p>
 
                         <button class="share-button">Share</button>
@@ -172,12 +172,18 @@
                 </div>
                 <div>
                     <select id="cuisine-type">
-                        <option selected>Cuisine</option>
-                        <option value="korean">Korean</option>
+                        <option selected value="not specified">Cuisine</option>
                         <option value="american">American</option>
                         <option value="chinese">Chinese</option>
                         <option value="healthy">Healthy</option>
+                        <option value="italian">Italian</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="korean">Korean</option>
                         <option value="mediterranean">Mediterranean</option>
+                        <option value="mexican">Mexican</option>
+                        <option value="thai">Thai</option>
+                        <option value="unhealthy">Unhealthy</option>
+                        <option value="vegetarian">Vegetarian</option>
                     </select>
                 </div>
                 <div>
@@ -203,6 +209,49 @@
                 <input type="text" id="share-email" placeholder="Email">
                 <a id = "share-order-submit">Share Order</a>
                 <button id="share-cancel">Cancel</button>
+
+            </div>
+
+        </template>
+
+
+
+        <!-- Edit Order Template -->
+        <template id='edit-order-template'>
+
+            <div class="form small-10 medium-5 large-3">
+
+                <h2 id = "edit-order">Edit Your Order</h2>
+                <div>
+                    <input type="text" id="rest-name" placeholder="Restaurant Name" value="{{restaurant_name}}">
+                </div>
+                <div>
+                    <input type="text" id="order-details" placeholder="Order Details" value="{{details}}">
+                </div>
+                <div>
+                    <select id="cuisine-type">
+                        <option value="not specified">Cuisine</option>
+                        <option class = "option" value="american">American</option>
+                        <option class = "option" value="chinese">Chinese</option>
+                        <option class = "option" value="healthy">Healthy</option>
+                        <option class = "option" value="italian">Italian</option>
+                        <option class = "option" value="japanese">Japanese</option>
+                        <option class = "option" value="korean">Korean</option>
+                        <option class = "option" value="mediterranean">Mediterranean</option>
+                        <option class = "option" value="mexican">Mexican</option>
+                        <option class = "option" value="thai">Thai</option>
+                        <option class = "option" value="unhealthy">Unhealthy</option>
+                        <option class = "option" value="vegetarian">Vegetarian</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="text" id="order-image" placeholder="Order Image URL" value="{{img_url}}">
+                </div>
+                <div>Favorite?
+                    <input type="checkbox" id="meal-favorite">
+                </div>
+
+                <button id="edit-order-submit">Save Order</button>
 
             </div>
 

@@ -116,26 +116,70 @@ app.route('/users/:id')
 
 
 // This route shows the user's single order.
-app.route('/users/:id/orders/:order_id')
+app.get('/users/:id/orders/:order_id', function(req, res) {
 
-    .get(function(req, res) {
+    User.findById(req.params.id).then(function(user) {
+
+        // Just making sure that we are getting the right user.
+        // console.log(user);
+
+        // Just making sure that we are getting the user's orders.
+        // console.log(user.orders);
+
+        // After grabbing all of the user's orders, iterate through them to find the single one.
+        user.orders.forEach(function(order) {
+
+            // Compare each order's id to the id entered in in the request's params
+            if (order._id == req.params.order_id) {
+
+                // Send that order back to the frontend if there is a match.
+                res.send(order);
+
+            }
+
+        });
+
+});
+
+// This route is for editing an order.
+app.put('/users/:id/orders/:order_id', function(req, res) {
+
+        Order.findByIdAndUpdate(req.params.order_id, req.body, function(err, order) {
+
+            if (err) {
+
+                console.log(err);
+
+            }
+
+
+        });
 
         User.findById(req.params.id).then(function(user) {
 
-            // Just making sure that we are getting the right user.
-            // console.log(user);
-
-            // Just making sure that we are getting the user's orders.
-            // console.log(user.orders);
-
-            // After grabbing all of the user's orders, iterate through them to find the single one.
             user.orders.forEach(function(order) {
 
-                // Compare each order's id to the id entered in in the request's params
                 if (order._id == req.params.order_id) {
 
-                    // Send that order back to the frontend if there is a match.
-                    res.send(order);
+                    var index = user.orders.indexOf(order);
+                    user.orders.splice(index, 1);
+                    user.save();
+
+                    var newOrder = {
+
+                        restaurant_name: req.body.restaurant_name,
+                        details: req.body.details,
+                        cuisine: req.body.cuisine,
+                        img_url: req.body.img_url,
+                        favorite: req.body.favorite
+
+                    };
+
+                    user.orders.push(newOrder);
+
+                    user.save();
+
+                    res.send(user);
 
                 }
 
@@ -144,6 +188,8 @@ app.route('/users/:id/orders/:order_id')
         });
 
     });
+
+});
 
 // This route signs in the user.
 app.route('/signin')
