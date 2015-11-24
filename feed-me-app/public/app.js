@@ -303,6 +303,9 @@ var renderMeals = function(data){
 	})
 
     addShareClick();
+
+    addEditForm();
+
     deleteMeal();
 
     // If user chooses "favorites", call the corresponding function
@@ -350,6 +353,9 @@ var renderFavorites = function() {
         })
 
         addShareClick();
+
+        addEditForm();
+
         deleteMeal();
 
           // If user chooses "all", call the corresponding function
@@ -373,6 +379,7 @@ var renderFavorites = function() {
 
 
 var attachNewOrder = function(){
+
 	$('#container').empty();
 
 	var template = Handlebars.compile($('#new-order-template').html());
@@ -483,6 +490,104 @@ var shareMeal = function(clicked_button, order_id) {
         window.location.href = "mailto:" + $mailTo + "?subject=" + $restaurantName + "&body=Hey, here's my order details, thanks!%0D%0A%0D%0A" + $orderDetails;
 
     });
+
+}
+
+var addEditForm = function() {
+
+    var editButtons = $('.edit-button');
+
+    for(var i = 0; i < editButtons.length; i++){
+
+        $(editButtons[i]).click(function(){
+
+            var orderId = $(this).parent().attr('data-id');
+
+            $.ajax({
+                url: '/users/' +  Cookies.get('loggedInUser') + '/orders/' + orderId,
+                method: 'GET'
+            }).done(showEditMealForm);
+
+        });
+
+    }
+
+}
+
+var showEditMealForm = function(data){
+
+    $('#container').empty();
+
+    var template = Handlebars.compile($('#edit-order-template').html());
+
+    $('#container').append(template(data));
+
+    // by default, select the cuisine that it already was set to
+    $.each( $('.option'), function( index, option ){
+
+        if (option.value == data.cuisine) {
+
+            $(option).attr('selected', 'selected');
+        }
+
+    });
+
+    // check if the order is favorited
+    if (data.favorite === true) {
+        $('#meal-favorite').attr("checked", "checked");
+    }
+
+    $('#edit-order-submit').click(function() {
+
+
+        editMeal(data._id);
+    })
+
+}
+
+var editMeal = function(orderId){
+
+    console.log("reached edit new order");
+    console.log(orderId);
+
+    var restName = $('#rest-name').val();
+    var details = $('#order-details').val();
+    var cuisine = $('#cuisine-type').val();
+    var image = $('#order-image').val();
+    var favorite = $('#meal-favorite');
+
+
+    // check if the meal-favorite checkbox is checked, if it is, set favorite to true,
+    // else, to false.
+    if (favorite.is(":checked")) {
+
+        favorite = true;
+
+    } else {
+
+        favorite = false;
+    }
+
+    // check to make sure the favorite is sending the right boolean value
+    console.log(favorite);
+
+    var orderData = {
+        restaurant_name: restName,
+        details: details,
+        cuisine: cuisine,
+        img_url: image,
+        favorite: favorite
+    }
+
+    $.ajax({
+       url: '/users/' +  Cookies.get('loggedInUser') + '/orders/' + orderId,
+       method: 'PUT',
+       data: orderData
+    }).done(function(data){
+        console.log(data)
+        $('#container').empty();
+        renderMeals(data);
+   });
 
 }
 
