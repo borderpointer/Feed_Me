@@ -201,6 +201,24 @@ app.delete('/users/:id/orders/:order_id', function(req, res) {
 
 });
 
+app.put('/users/:id/orders/:order_id', function(req, res){
+
+    Order.findOneAndUpdate({ _id: req.params.order_id }, function(err){
+
+        if (err) {
+
+            console.log(err);
+
+
+        }
+    });
+
+    User.findById(req.params.id).then(function(user) {
+
+        user.orders.forEach(function(order) {
+
+})
+
 
 
 
