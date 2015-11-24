@@ -82,8 +82,23 @@ app.route('/users/:id/orders')
             // Just making sure that we are getting the user's orders.
             console.log(user.orders);
 
-            res.send(user.orders);
+            res.send(user);
 
+        });
+
+    })
+
+    .post(function(req,res){
+
+        User.findOne(req.params.id).then(function(user) {
+            Order.create(req.body).then(function(order) {
+
+                console.log(user);
+                console.log(order)
+                user.orders.push(order)
+                user.save()
+                res.send(user);
+            });
         });
 
     });
@@ -149,22 +164,6 @@ app.route('/signin')
 
     });
 
-app.route('/users/:id/orders')
-
-    .post(function(req,res){
-
-        User.findOne(req.params.id).then(function(user) {
-            Order.create(req.body).then(function(order) {
-
-                console.log(user);
-                console.log(order)
-                user.orders.push(order)
-                user.save()
-                res.send(user);
-            });
-        });
-    });
-
 app.delete('/users/:id/orders/:order_id', function(req, res) {
 
     Order.remove({ _id: req.params.order_id }, function(err){
@@ -200,7 +199,3 @@ app.delete('/users/:id/orders/:order_id', function(req, res) {
     });
 
 });
-
-
-
-
