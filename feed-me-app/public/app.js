@@ -355,7 +355,7 @@ var addShareClick = function() {
 
 	var shareButtons = $('.share-button');
 
-    console.log(shareButtons)
+    // console.log(shareButtons)
 
 	for(i=0; i < shareButtons.length;i++){
 		$(shareButtons[i]).click(function(){
@@ -370,8 +370,15 @@ var addShareClick = function() {
 
 			var shareTemp = $('.share-form');
 
-			shareMeal($(this).parent().attr('data-id'))
+			var sendEmailButton = $('#share-order-submit');
 
+			$(sendEmailButton).click(function(){
+		
+				shareMeal($(this).parent().parent().attr('data-id'))
+				// console.log(shareMeal($(this).parent().parent().attr('data-id')))
+			})
+
+			
 			$('#share-cancel').click(function(){
 				activeButton.show();
 				shareTemp.remove();
@@ -382,10 +389,22 @@ var addShareClick = function() {
 
 var shareMeal = function(data) {
 
+	$.ajax({
+       		url: '/users/' +  Cookies.get('loggedInUser')+'/orders/'+data,
+       		method: 'GET',
+   		}).done(function(info){
+
+			// var sendEmailField = $('#share-email').val();
+
+			 
+
+			// +sendEmailField+"?subject=LunchOrder&body="+info.details
 
 
-	console.log(data);
+			// console.log("mailto:"+sendEmailField+"?subject=LunchOrder&body="+info.details)
 
+			// return ("mailto:"+sendEmailField+"?subject=LunchOrder&body="+info.details);	
+   	});
 
 }
 
