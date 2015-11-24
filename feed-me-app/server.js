@@ -87,7 +87,7 @@ app.route('/users/:id/orders')
         });
 
     })
-
+    // This route creates a new order
     .post(function(req,res){
 
         User.findOne(req.params.id).then(function(user) {
@@ -103,7 +103,7 @@ app.route('/users/:id/orders')
 
     });
 
-
+// Grab single user
 app.route('/users/:id')
 
     .get(function(req,res){
@@ -164,6 +164,7 @@ app.route('/signin')
 
     });
 
+// This route delets an order from the user's orders key, and from the orders collection
 app.delete('/users/:id/orders/:order_id', function(req, res) {
 
     Order.remove({ _id: req.params.order_id }, function(err){
