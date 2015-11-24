@@ -30,7 +30,7 @@ var startApp = function(data) {
         "border": "8px solid #fff",
         "padding": "30px 20px",
         "margin": "0 auto",
-        "width": "35vw"
+        "width": "40vw"
     });
 
     $('#tagline').css({
