@@ -82,8 +82,23 @@ app.route('/users/:id/orders')
             // Just making sure that we are getting the user's orders.
             console.log(user.orders);
 
-            res.send(user.orders);
+            res.send(user);
 
+        });
+
+    })
+
+    .post(function(req,res){
+
+        User.findOne(req.params.id).then(function(user) {
+            Order.create(req.body).then(function(order) {
+
+                console.log(user);
+                console.log(order)
+                user.orders.push(order)
+                user.save()
+                res.send(user);
+            });
         });
 
     });
@@ -108,16 +123,16 @@ app.route('/users/:id/orders/:order_id')
         User.findById(req.params.id).then(function(user) {
 
             // Just making sure that we are getting the right user.
-            console.log(user);
+            // console.log(user);
 
             // Just making sure that we are getting the user's orders.
-            console.log(user.orders);
+            // console.log(user.orders);
 
             // After grabbing all of the user's orders, iterate through them to find the single one.
             user.orders.forEach(function(order) {
 
                 // Compare each order's id to the id entered in in the request's params
-                if (order._id === req.params.order_id) {
+                if (order._id == req.params.order_id) {
 
                     // Send that order back to the frontend if there is a match.
                     res.send(order);
@@ -147,22 +162,6 @@ app.route('/signin')
 
         });
 
-    });
-
-app.route('/users/:id/orders')
-
-    .post(function(req,res){
-
-        User.findOne(req.params.id).then(function(user) {
-            Order.create(req.body).then(function(order) {
-
-                console.log(user);
-                console.log(order)
-                user.orders.push(order)
-                user.save()
-                res.send(user);
-            });
-        });
     });
 
 app.delete('/users/:id/orders/:order_id', function(req, res) {
@@ -201,6 +200,7 @@ app.delete('/users/:id/orders/:order_id', function(req, res) {
 
 });
 
+
 app.put('/users/:id/orders/:order_id', function(req, res){
 
     Order.findOneAndUpdate({ _id: req.params.order_id }, function(err){
@@ -218,6 +218,7 @@ app.put('/users/:id/orders/:order_id', function(req, res){
         user.orders.forEach(function(order) {
 
 })
+
 
 
 

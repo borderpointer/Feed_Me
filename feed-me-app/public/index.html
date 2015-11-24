@@ -82,6 +82,14 @@
 
             <div id = "orders-container" class = "row">
 
+                <div style="width: 15%; margin: 0 auto; text-align: center;">
+                Sort By:<br>
+                    <select id="filter">
+                        <option value="all" selected>All</option>
+                        <option value="favorites">Favorites</option>
+                    </select>
+                </div>
+
                 {{#each orders}}
 
                     <div class="order-div small-12 medium-6 large-4 columns" data-id="{{_id}}">
@@ -93,7 +101,47 @@
                             <img src="img/order-placeholder.jpg">
                             {{/if}}
                         </div>
-                        <h3 class = "meal-details">Meal Details</h3>
+                        <h3 class = "cuisine">{{cuisine}}</h3>
+                        <p id='main-screen-details'><i>{{details}}</i></p>
+
+                        <button class="share-button">Share</button>
+                        <br>
+                        <button class="edit-button">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="delete-button">Delete</button>
+                    </div>
+
+                {{/each}}
+                <div class = "order-div small-12 medium-6 large-4 columns">
+                <button id="create-new-order">Create New Order</button>
+                </div>
+            </div>
+
+        </template>
+        <!-- Main screen display all users fav meals -->
+        <template id='fav-screen'>
+
+            <div id = "orders-container" class = "row">
+
+                <div style="width: 15%; margin: 0 auto; text-align: center;">
+                Sort By:<br>
+                    <select id="filter">
+                        <option value="all" selected>All</option>
+                        <option value="favorites" selected>Favorites</option>
+                    </select>
+                </div>
+
+                {{#each this}}
+
+                    <div class="order-div small-12 medium-6 large-4 columns" data-id="{{_id}}">
+                        <h2 id='main-screen-rest-name'>{{restaurant_name}}</h2>
+                        <div class = "img-container">
+                            {{#if img_url}}
+                            <img src={{img_url}}>
+                            {{else}}
+                            <img src="img/order-placeholder.jpg">
+                            {{/if}}
+                        </div>
+                        <h3 class = "cuisine">{{cuisine}}</h3>
                         <p id='main-screen-details'><i>{{details}}</i></p>
 
                         <button class="share-button">Share</button>
@@ -151,7 +199,7 @@
                 <div>
                     <input type="text" id="share-email" placeholder="Email">
                 </div>
-                <button id="share-order-submit">Share Order</button>
+                <a id="share-order-submit" href="mailto:?subject={{restaurant_name}}&body={{details}}" target="_blank">Share Order</a>
                 <br>
                 <button id="share-cancel">Cancel</button>
             </div>
