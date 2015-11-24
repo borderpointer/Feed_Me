@@ -379,6 +379,17 @@ var attachNewOrder = function(){
 
 	$('#container').append(template);
 
+	$('#new-order-back-button').click(function(){
+		$.ajax({
+	       url: '/users/' +  Cookies.get('loggedInUser') + '/orders',
+	       method: 'POST'
+	   	}).done(function(data){
+	   		console.log(data)
+	   		$('#container').empty();
+	   		renderMeals(data);
+   		});
+	})
+
 	$('#new-order-submit').click(function() {
 
 		createNewOrder();
