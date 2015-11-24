@@ -290,13 +290,13 @@ var renderMeals = function(data){
     console.log(data);
 
 
-    var container = $('#container');
+    var $container = $('#container');
 
-    container.empty();
+    $container.empty();
 
     var template = Handlebars.compile($('#main-screen').html());
 
-    container.append(template(data));
+    $container.append(template(data));
 
     $('#create-new-order').click(function() {
 		attachNewOrder();
@@ -304,6 +304,69 @@ var renderMeals = function(data){
 
     addShareClick();
     deleteMeal();
+
+    // If user chooses "favorites", call the corresponding function
+    var $filter = $('#filter');
+
+    $filter.change(function () {
+
+        if ($filter.val() === "favorites") {
+
+            renderFavorites();
+        }
+
+    });
+
+}
+
+var renderFavorites = function() {
+
+    $.ajax({
+       url: '/users/' +  Cookies.get('loggedInUser') + '/orders',
+       method: 'GET'
+    }).done(function(data){
+
+        var sortedOrders = [];
+
+        data.orders.forEach(function(order) {
+
+            if (order.favorite === true) {
+
+                sortedOrders.push(order);
+            }
+
+        });
+
+        var $container = $('#container');
+
+        $container.empty();
+
+        var template = Handlebars.compile($('#fav-screen').html());
+
+        $container.append(template(sortedOrders));
+
+        $('#create-new-order').click(function() {
+            attachNewOrder();
+        })
+
+        addShareClick();
+        deleteMeal();
+
+          // If user chooses "all", call the corresponding function
+        var $filter = $('#filter');
+
+        $filter.change(function () {
+
+            if ($filter.val() === "all") {
+
+                renderMeals(data);
+
+            }
+
+        });
+
+   });
+
 }
 
 
@@ -323,12 +386,28 @@ var attachNewOrder = function(){
 }
 
 var createNewOrder = function(){
+
 	console.log("reached create new order")
 	var restName = $('#rest-name').val();
 	var details = $('#order-details').val();
 	var cuisine = $('#cuisine-type').val();
 	var image = $('#order-image').val();
-	var favorite = $('#meal-favorite').val();
+	var favorite = $('#meal-favorite');
+
+
+    // check if the meal-favorite checkbox is checked, if it is, set favorite to true,
+    // else, to false.
+    if (favorite.is(":checked")) {
+
+        favorite = true;
+
+    } else {
+
+        favorite = false;
+    }
+
+    // check to make sure the favorite is sending the right boolean value
+    console.log(favorite);
 
 	var orderData = {
 		restaurant_name: restName,
@@ -355,7 +434,7 @@ var addShareClick = function() {
 
 	var shareButtons = $('.share-button');
 
-    console.log(shareButtons)
+    // console.log(shareButtons)
 
 	for(i=0; i < shareButtons.length;i++){
 		$(shareButtons[i]).click(function(){
@@ -370,8 +449,15 @@ var addShareClick = function() {
 
 			var shareTemp = $('.share-form');
 
-			shareMeal($(this).parent().attr('data-id'))
+			var sendEmailButton = $('#share-order-submit');
 
+			$(sendEmailButton).click(function(){
+		
+				shareMeal($(this).parent().parent().attr('data-id'))
+				// console.log(shareMeal($(this).parent().parent().attr('data-id')))
+			})
+
+			
 			$('#share-cancel').click(function(){
 				activeButton.show();
 				shareTemp.remove();
@@ -382,10 +468,22 @@ var addShareClick = function() {
 
 var shareMeal = function(data) {
 
+	$.ajax({
+       		url: '/users/' +  Cookies.get('loggedInUser')+'/orders/'+data,
+       		method: 'GET',
+   		}).done(function(info){
+
+			// var sendEmailField = $('#share-email').val();
+
+			 
+
+			// +sendEmailField+"?subject=LunchOrder&body="+info.details
 
 
-	console.log(data);
+			// console.log("mailto:"+sendEmailField+"?subject=LunchOrder&body="+info.details)
 
+			// return ("mailto:"+sendEmailField+"?subject=LunchOrder&body="+info.details);	
+   	});
 
 }
 
