@@ -60,7 +60,7 @@ html, h1, h2, h3, h4, h5, p, a {
 #signout:hover {
     opacity: .75;
 }
-#signin:hover, #signup:hover, #signup-submit:hover, #signin-submit:hover, #new-order-submit:hover, #create-new-order:hover, .share-button:hover, #share-order-submit:hover #edit-order-submit:hover {
+#signin:hover, #signup:hover, #signup-submit:hover, #signin-submit:hover, #new-order-submit:hover, #create-new-order:hover, .share-button:hover, #share-email-submit:hover, #share-text-submit:hover, #edit-order-submit:hover {
     background-color: #619DD7;
 }
 
@@ -173,7 +173,7 @@ img {
     margin: 15px auto;
  }
 
-  #share-order-submit, #edit-order-submit {
+  #share-email-submit, #share-text-submit, #edit-order-submit {
     background-color: #D7C32E;
     height: 3.5em;
     font-size: 1em;
