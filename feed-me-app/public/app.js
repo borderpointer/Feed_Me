@@ -297,6 +297,8 @@ var renderMeals = function(data){
 
     $container.append(template(data));
 
+    $('.confirmation').hide();
+
     $('#create-new-order').click(function() {
 		attachNewOrder();
 	})
@@ -346,6 +348,8 @@ var renderFavorites = function() {
         var template = Handlebars.compile($('#fav-screen').html());
 
         $container.append(template(sortedOrders));
+
+        $('.confirmation').hide();
 
         $('#create-new-order').click(function() {
             attachNewOrder();
@@ -449,27 +453,32 @@ var createNewOrder = function(){
 
 var addShareClick = function() {
 
-	var shareButtons = $('.share-button');
 
-	for(var i = 0; i < shareButtons.length; i++){
+    var shareButtons = $('.share-button');
 
-		$(shareButtons[i]).click(function(){
+    for(var i = 0; i < shareButtons.length; i++){
+
+        $(shareButtons[i]).click(function(){
 
             // Trigger shareMeal, which appends the handlebar template
-			shareMeal($(this), $(this).parent().attr('data-id'));
+            shareMeal($(this), $(this).parent().attr('data-id'));
 
-		});
 
-	}
+        });
+
+    }
 
 }
 
 var shareMeal = function(clicked_button, order_id) {
 
+
     // All of this is for showing the share form template
     var $template = Handlebars.compile($('#share-template').html());
 
     clicked_button.parent().append($template);
+
+    $('.confirmation').hide();
 
     clicked_button.hide();
 
@@ -501,6 +510,9 @@ var shareMeal = function(clicked_button, order_id) {
 
         window.location.href = "mailto:" + $mailTo + "?subject=" + $restaurantName + "&body=Hey, here's my order details, thanks!%0D%0A%0D%0A" + $orderDetails;
 
+        $(this).parent().parent().find('.confirmation').show();
+        $('.share-form').remove();
+        clicked_button.show();
     });
 
     $sendTextButton.click(function() {
@@ -514,19 +526,21 @@ var shareMeal = function(clicked_button, order_id) {
         // grab order's details
         var $orderDetails = $(this).parent().parent().find("#main-screen-details").html();
 
-        shareViaText($textTo, $restaurantName, $orderDetails);
+        shareViaText($textTo, $restaurantName, $orderDetails, clicked_button);
 
     });
 
 }
 
-var shareViaText = function(phone_num, restaurant_name, order_details) {
+var shareViaText = function(phone_num, restaurant_name, order_details, clicked_button) {
 
     $.ajax({
         url: '/twilio/' + phone_num + '/' + restaurant_name + '/' + order_details,
         method: 'GET'
-    }).done(function(data) {
-        console.log(data);
+    }).done(function() {
+        clicked_button.parent().find('.confirmation').show();
+        $('.share-form').remove();
+        clicked_button.show();
     });
 }
 

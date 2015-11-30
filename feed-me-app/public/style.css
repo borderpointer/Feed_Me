@@ -195,3 +195,8 @@ img {
     font-weight: 700;
     font-style: italic;
  }
+
+ .confirmation {
+    padding-top: 20px;
+    color: #64AF3C;
+ }
