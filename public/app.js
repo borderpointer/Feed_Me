@@ -26,11 +26,11 @@ var startApp = function(data) {
         "letter-spacing": "15px",
         "color": "#fff",
         "display": "block",
-        "font-size": "3.5em",
+        "font-size": "3em",
         "border": "8px solid #fff",
         "padding": "30px 20px",
         "margin": "0 auto",
-        "width": "40vw"
+        "width": "500px"
     });
 
     $('#tagline').css({
@@ -477,7 +477,9 @@ var shareMeal = function(clicked_button, order_id) {
 
     // These are the things needed to send a request for email
 
-    var $sendEmailButton = $('#share-order-submit');
+    var $sendTextButton = $('#share-text-submit');
+
+    var $sendEmailButton = $('#share-email-submit');
 
     $('#share-cancel').click(function(){
 
@@ -500,6 +502,30 @@ var shareMeal = function(clicked_button, order_id) {
         window.location.href = "mailto:" + $mailTo + "?subject=" + $restaurantName + "&body=Hey, here's my order details, thanks!%0D%0A%0D%0A" + $orderDetails;
 
     });
+
+    $sendTextButton.click(function() {
+
+        // Grab user's phone number input
+        var $textTo = $('#share-text').val();
+
+        // Grab order's restaurant name
+        var $restaurantName = $(this).parent().parent().find("#main-screen-rest-name").html();
+
+        // grab order's details
+        var $orderDetails = $(this).parent().parent().find("#main-screen-details").html();
+
+        shareViaText($textTo, $restaurantName, $orderDetails);
+
+    });
+
+}
+
+var shareViaText = function(phone_num, restaurant_name, order_details) {
+
+    $.ajax({
+        url: '/twilio/' + phone_num + '/' + restaurant_name + '/' + order_details,
+        method: 'GET'
+    }).done(console.log("worked!!!"));
 
 }
 
