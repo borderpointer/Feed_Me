@@ -12,3 +12,8 @@ Our users are people that like to share what they eat. It makes ordering for fri
 We spent about an hour or two brainstorming the idea and eventually came to it as we were taking a lunch break and couldn't figure out what to get the other team members. 
 
 
+User Story
+
+Upon coming to the landing site, the user is asked to sign up or sign in. The user can sign up with their email and once they are signed up they will be taken to their page. They are able to create new meals that they have had and will be asked to put in information such as restaurant name, meal, and img url. This can be sent to someone using email or text. This makes sharing someones order easy.
+
+
