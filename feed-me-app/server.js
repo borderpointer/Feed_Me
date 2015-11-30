@@ -270,8 +270,8 @@ app.route('/twilio/:phone_num/:restaurant_name/:order_details')
                     // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
                     // http://www.twilio.com/docs/api/rest/sending-sms#example-1
 
-                    console.log(responseData.from); // outputs "+14506667788"
-                    console.log(responseData.body); // outputs "word to your mother."
+                    console.log(responseData.from); // outputs the number the text is getting sent from
+                    console.log(responseData.body); // outputs the body of the message
 
                 }
 
