@@ -210,7 +210,6 @@ var signUpUser = function() {
             .done(function(data) {
 
                 console.log(data);
-                alert("signed up successfully!");
 
                 // When the user is signed in, remove the sign in and sign up links and the respective form rendered, and only show the sign out link.
                 $('.form').empty();
@@ -275,7 +274,7 @@ var renderMeals = function(data){
         "border": "3px solid #fff",
         "color" : "#fff",
         "padding": "10px 15px",
-        "width": "15vw",
+        "width": "200px",
         "text-align": "center"
     });
 
