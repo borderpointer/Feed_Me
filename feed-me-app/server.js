@@ -254,14 +254,13 @@ app.route('/twilio/:phone_num/:restaurant_name/:order_details')
 
         //require the Twilio module and create a REST client
         var client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
-        console.log(client);
 
         //Send an SMS text message
         client.sendMessage({
 
-            to: phone_num,
+            to: req.params.phone_num,
             from: '+19177468848',
-            body: 'Hey! Can you get me ' + req.params.order_details + ' at ' + req.params.restaurant_name + '? Thanks!'
+            body: 'Hey! Can you get me the ' + req.params.order_details + ' at ' + req.params.restaurant_name + '? Thanks!'
 
         }, function(err, responseData) { //this function is executed when a response is received from Twilio
 

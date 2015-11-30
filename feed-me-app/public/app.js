@@ -525,8 +525,9 @@ var shareViaText = function(phone_num, restaurant_name, order_details) {
     $.ajax({
         url: '/twilio/' + phone_num + '/' + restaurant_name + '/' + order_details,
         method: 'GET'
-    }).done(console.log("worked!!!"));
-
+    }).done(function(data) {
+        console.log(data);
+    });
 }
 
 var addEditForm = function() {
