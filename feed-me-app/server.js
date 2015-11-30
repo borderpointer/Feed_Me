@@ -90,7 +90,7 @@ app.route('/users/:id/orders')
     // This route creates a new order
     .post(function(req,res){
 
-        User.findOne(req.params.id).then(function(user) {
+        User.findById(req.params.id).then(function(user) {
             Order.create(req.body).then(function(order) {
 
                 console.log(user);
