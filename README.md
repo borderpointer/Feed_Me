@@ -2,6 +2,9 @@
 
 ### Share your lunch order
 
+### Test User Login
+* email: elli@mailinator.com
+* password: password
 
 ### Technologies
 
